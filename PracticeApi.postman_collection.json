@@ -1,0 +1,814 @@
+{
+	"info": {
+		"_postman_id": "66b0f901-59c1-489f-8255-1c42d573ad7a",
+		"name": "PracticeApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29107702"
+	},
+	"item": [
+		{
+			"name": "DataDrivenTesting",
+			"item": [
+				{
+					"name": "Auth - CreateToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonBody = pm.response.json();\r",
+									"console.log(typeof(jsonBody))\r",
+									"\r",
+									"pm.environment.set(\"token\", jsonBody.token)\r",
+									"\r",
+									"pm.test(\"Token is validate properly.\", ()=>{\r",
+									"    pm.expect(jsonBody.token).to.be.eql(pm.environment.get(\"token\"))\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"admin\",\r\n    \"password\" : \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://restful-booker.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"restful-booker",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateBookingCSV",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var statusCode = pm.response.code\r",
+									"console.log(statusCode)\r",
+									"\r",
+									"jsonBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.environment.set(\"id\",jsonBody.bookingid);\r",
+									"\r",
+									"if(statusCode==200){\r",
+									"\r",
+									"    pm.test(\"Status code is 200\", function () {\r",
+									"        pm.response.to.have.status(200);\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"First Name is correctly match with environment\", function(){\r",
+									"        pm.expect(jsonBody.booking.firstname).to.eql(pm.iterationData.get(\"First_Name\"));\r",
+									"    })\r",
+									"\r",
+									"    pm.test(\"Second name is correct\", function(){\r",
+									"        pm.expect(jsonBody.booking.lastname).to.eql(pm.iterationData.get(\"Last_Name\"));\r",
+									"    })\r",
+									"\r",
+									"    pm.test(\"total price is correct\", function(){\r",
+									"        pm.expect(jsonBody.booking.totalprice).to.eql(pm.environment.get(\"Total_Price\"));\r",
+									"    })\r",
+									"    pm.test(\"Deposite status is correct\", function(){\r",
+									"        pm.expect(jsonBody.booking.depositpaid).to.eql(pm.environment.get(\"depositpaid\"));\r",
+									"    })\r",
+									"\r",
+									"    pm.test(\"Check in is confirmed\", function(){\r",
+									"        pm.expect(jsonBody.booking.bookingdates.checkin).to.eql(pm.environment.get(\"checkin_date\"));\r",
+									"    })\r",
+									"\r",
+									"    pm.test(\"Check out is confirmed\", function(){\r",
+									"        pm.expect(jsonBody.booking.bookingdates.checkout).to.eql(pm.environment.get(\"chekcout_date\"));\r",
+									"    })\r",
+									"    pm.test(\"Additional need is confirmed\", function(){\r",
+									"        pm.expect(jsonBody.booking.additionalneeds).to.eql(pm.environment.get(\"Additional_Needs\"));\r",
+									"    })\r",
+									"}\r",
+									"else if(statusCode == 404){\r",
+									"    pm.test(\"Not Found\", function(){\r",
+									"        pm.response.to.have.status(404)\r",
+									"    })\r",
+									"}\r",
+									"else if(statusCode == 400){\r",
+									"    pm.test(\"Not Found\", function(){\r",
+									"        pm.response.to.have.status(400)\r",
+									"    })\r",
+									"}\r",
+									"else if(statusCode == 401){\r",
+									"    pm.test(\"Not Found\", function(){\r",
+									"        pm.response.to.have.status(401)\r",
+									"    })\r",
+									"}\r",
+									"else if(statusCode == 402){\r",
+									"    pm.test(\"Not Found\", function(){\r",
+									"        pm.response.to.have.status(402)\r",
+									"    })\r",
+									"}\r",
+									"else if(statusCode == 403){\r",
+									"    pm.test(\"Not Found\", function(){\r",
+									"        pm.response.to.have.status(403)\r",
+									"    })\r",
+									"}\r",
+									"else if(statusCode == 500){\r",
+									"    pm.test(\"Not Found\", function(){\r",
+									"        pm.response.to.have.status(500)\r",
+									"    })\r",
+									"}\r",
+									"else if(statusCode == 501){\r",
+									"    pm.test(\"Not Found\", function(){\r",
+									"        pm.response.to.have.status(501)\r",
+									"    })\r",
+									"}\r",
+									"else if(statusCode == 502){\r",
+									"    pm.test(\"Not Found\", function(){\r",
+									"        pm.response.to.have.status(502)\r",
+									"    })\r",
+									"}\r",
+									"else if(statusCode == 503){\r",
+									"    pm.test(\"Not Found\", function(){\r",
+									"        pm.response.to.have.status(503)\r",
+									"    })\r",
+									"}\r",
+									"else if(statusCode == 504){\r",
+									"    pm.test(\"Not Found\", function(){\r",
+									"        pm.response.to.have.status(504)\r",
+									"    })\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// random value generate\r",
+									"var firsname = pm.variables.replaceIn('{{$randomFirstName}}');\r",
+									"var lastname = pm.variables.replaceIn('{{$randomLastName}}');\r",
+									"var Price = pm.variables.replaceIn('{{$randomInt}}');\r",
+									"var additonalNeeds = pm.variables.replaceIn('{{$randomProduct}}');\r",
+									"var depositpaid = pm.variables.replaceIn('{{$randomBoolean}}');\r",
+									"console.log(typeof(depositpaid))\r",
+									"\r",
+									"//set value in envrionment\r",
+									"// pm.environment.set(\"First_Name\", firsname);\r",
+									"// pm.environment.set(\"Last_Name\", lastname);\r",
+									"pm.environment.set(\"Total_Price\", JSON.parse(Price));\r",
+									"pm.environment.set(\"depositpaid\", JSON.parse(depositpaid))\r",
+									"pm.environment.set(\"Additional_Needs\", additonalNeeds);\r",
+									"\r",
+									"//date of check in and checkout verify.\r",
+									"const moment = require('moment');\r",
+									"const today = moment();\r",
+									"// console.log(today.add(5, 'd').format(\"YYYY-MM-DD\"))\r",
+									"var checkin = today.add(1, 'M').format(\"YYYY-MM-DD\")\r",
+									"var checkout = today.add(2, 'd').format(\"YYYY-MM-DD\")\r",
+									"\r",
+									"//set checkin date on envrionment\r",
+									"pm.environment.set(\"checkin_date\", checkin)\r",
+									"pm.environment.set(\"chekcout_date\", checkout)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"{{First_Name}}\",\r\n    \"lastname\" : \"{{Last_Name}}\",\r\n    \"totalprice\" : {{Total_Price}},\r\n    \"depositpaid\" : {{depositpaid}},\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"{{checkin_date}}\",\r\n        \"checkout\" : \"{{chekcout_date}}\"\r\n    },\r\n    \"additionalneeds\" : \"{{Additional_Needs}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/booking",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth-Create Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let getResponse = pm.response.json();\r",
+							"\r",
+							"console.log(\"Token\", getResponse.token)\r",
+							"console.log(getResponse)\r",
+							"\r",
+							"if(getResponse.token != \" \"){\r",
+							"    pm.environment.set(\"token\", getResponse.token);\r",
+							"}else{\r",
+							"    console.log(\"The token is not valid.\")\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Token is validated properly\", ()=>{\r",
+							"    pm.expect(getResponse.token).to.be.eql(pm.environment.get(\"token\"))\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"admin\",\r\n    \"password\" : \"password123\"\r\n}"
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/auth",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBooking",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"var firsname = pm.variables.replaceIn(\"{{$randomFirstName}}\")\r",
+							"var lastNameList = [\"shoan\", \"rayan\", \"cefal\", \"martin\",\"desco\", \"jiniva\"];\r",
+							"var lastName = randomArrayListGenerator(lastNameList);\r",
+							"var totalPrice = randomTotalPrice(1,5000);\r",
+							"var depositPaid = pm.variables.replaceIn(\"{{$randomBoolean}}\")\r",
+							"var additionalNeeds = [\"Food\", \"Internet\", \"TravellingTicket\", \"Money\"]\r",
+							"\r",
+							"//date of check in and checkout verify.\r",
+							"const moment = require('moment');\r",
+							"const today = moment();\r",
+							"// console.log(today.add(5, 'd').format(\"YYYY-MM-DD\"))\r",
+							"var checkin = today.add(1, 'M').format(\"YYYY-MM-DD\")\r",
+							"var checkout = today.add(2, 'd').format(\"YYYY-MM-DD\")\r",
+							"\r",
+							"// setting the ramdom data in the environment\r",
+							"pm.environment.set(\"First_Name\", firsname)\r",
+							"pm.environment.set(\"Last_Name\", lastName);\r",
+							"pm.environment.set(\"totalPrice\", JSON.parse(totalPrice));\r",
+							"pm.environment.set(\"depositpaid\", JSON.parse(depositPaid));\r",
+							"pm.environment.set(\"Additional_Needs\", randomArrayListGenerator(additionalNeeds))\r",
+							"pm.environment.set(\"checkin_date\", checkin)\r",
+							"pm.environment.set(\"chekOut_date\", checkout)\r",
+							"\r",
+							"\r",
+							"\r",
+							"function randomArrayListGenerator(arrayList){\r",
+							"    var randomIndex = Math.floor(Math.random() * arrayList.length);\r",
+							"    console.log(randomIndex)\r",
+							"    return arrayList[randomIndex];\r",
+							"}\r",
+							"\r",
+							"function randomTotalPrice(min, max){\r",
+							"    var randomPrice = Math.floor(Math.random() * (max-min))+1;\r",
+							"    console.log(randomPrice)\r",
+							"    return randomPrice;\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let statusCode = pm.response.code;\r",
+							"\r",
+							"console.log(statusCode)\r",
+							"\r",
+							"jsonBody = JSON.parse(pm.response.text())\r",
+							"console.log(jsonBody)\r",
+							"\r",
+							"pm.environment.set(\"id\",jsonBody.bookingid);\r",
+							"\r",
+							"\r",
+							"if(statusCode == 200){\r",
+							"\r",
+							"    pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"   pm.test(\"First Name is correctly match with environment\", function(){\r",
+							"        pm.expect(jsonBody.booking.firstname).to.eql(pm.environment.get(\"First_Name\"));\r",
+							"    })\r",
+							"\r",
+							"    pm.test(\"Second name is correct\", function(){\r",
+							"        pm.expect(jsonBody.booking.lastname).to.eql(pm.environment.get(\"Last_Name\"));\r",
+							"    })\r",
+							"\r",
+							"    pm.test(\"total price is correct\", function(){\r",
+							"        pm.expect(jsonBody.booking.totalprice).to.eql(pm.environment.get(\"totalPrice\"));\r",
+							"    })\r",
+							"    pm.test(\"Deposite status is correct\", function(){\r",
+							"        pm.expect(jsonBody.booking.depositpaid).to.eql(pm.environment.get(\"depositpaid\"));\r",
+							"    })\r",
+							"\r",
+							"    pm.test(\"Check in is confirmed\", function(){\r",
+							"        pm.expect(jsonBody.booking.bookingdates.checkin).to.eql(pm.environment.get(\"checkin_date\"));\r",
+							"    })\r",
+							"\r",
+							"    pm.test(\"Check out is confirmed\", function(){\r",
+							"        pm.expect(jsonBody.booking.bookingdates.checkout).to.eql(pm.environment.get(\"chekcout_date\"));\r",
+							"    })\r",
+							"    pm.test(\"Additional needs are confirmed\", function(){\r",
+							"        pm.expect(jsonBody.booking.additionalneeds).to.eql(pm.environment.get(\"Additional_Needs\"));\r",
+							"    })\r",
+							"}\r",
+							"else if(statusCode == 404){\r",
+							"    pm.test(\"Not Found\", function(){\r",
+							"        pm.response.to.have.status(404)\r",
+							"    })\r",
+							"}\r",
+							"else if(statusCode == 400){\r",
+							"    pm.test(\"Bad Request!\", function(){\r",
+							"        pm.response.to.have.status(400)\r",
+							"    })\r",
+							"}\r",
+							"else if(statusCode == 401){\r",
+							"    pm.test(\"Unathorized\", function(){\r",
+							"        pm.response.to.have.status(401)\r",
+							"    })\r",
+							"}\r",
+							"else if(statusCode == 402){\r",
+							"    pm.test(\"Payment is required !!!\", function(){\r",
+							"        pm.response.to.have.status(402)\r",
+							"    })\r",
+							"}\r",
+							"else if(statusCode == 403){\r",
+							"    pm.test(\"Forbidden\", function(){\r",
+							"        pm.response.to.have.status(403)\r",
+							"    })\r",
+							"}\r",
+							"else if(statusCode == 500){\r",
+							"    pm.test(\"Internal Server Error\", function(){\r",
+							"        pm.response.to.have.status(500)\r",
+							"    })\r",
+							"}\r",
+							"else if(statusCode == 501){\r",
+							"    pm.test(\"Not Implemented yet\", function(){\r",
+							"        pm.response.to.have.status(501)\r",
+							"    })\r",
+							"}\r",
+							"else if(statusCode == 502){\r",
+							"    pm.test(\"502: Bad Gateway\", function(){\r",
+							"        pm.response.to.have.status(502)\r",
+							"    })\r",
+							"}\r",
+							"else if(statusCode == 503){\r",
+							"    pm.test(\"503: Service Unavailable\", function(){\r",
+							"        pm.response.to.have.status(503)\r",
+							"    })\r",
+							"}\r",
+							"else if(statusCode == 504){\r",
+							"    pm.test(\"504: Gateway Timeout\", function () {\r",
+							"pm.collectionVariables.unset(\"variable_key\");\r",
+							"        pm.response.to.have.status(504)\r",
+							"    })\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\" : \"{{First_Name}}\",\r\n    \"lastname\" : \"{{Last_Name}}\",\r\n    \"totalprice\" : {{totalPrice}},\r\n    \"depositpaid\" : {{depositpaid}},\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"{{checkin_date}}\",\r\n        \"checkout\" : \"{{chekOut_date}}\"\r\n    },\r\n    \"additionalneeds\" : \"{{Additional_Needs}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBookingInformationByID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"var statusCode = pm.response.code\r",
+							"\r",
+							"// working code\r",
+							"var jsonBody = JSON.parse(pm.response.text())\r",
+							"\r",
+							"\r",
+							"switch(statusCode){\r",
+							"    case 200:\r",
+							"            pm.test(\"First Name is  validated properly.\", function(){\r",
+							"                pm.expect(jsonBody.firstname).to.eql(pm.environment.get(\"First_Name\"))\r",
+							"            })\r",
+							"\r",
+							"            pm.test(\"Second name is  validated properly\", function(){\r",
+							"                pm.expect(jsonBody.lastname).to.eql(pm.environment.get(\"Last_Name\"))\r",
+							"            })\r",
+							"\r",
+							"            pm.test(\"total price is  validated properly\", function(){\r",
+							"                pm.expect(jsonBody.totalprice).to.eql(pm.environment.get(\"totalPrice\"))\r",
+							"            })\r",
+							"            pm.test(\"Deposite status is  validated properly\", function(){\r",
+							"                pm.expect(jsonBody.depositpaid).to.eql(pm.environment.get(\"depositpaid\"))\r",
+							"            })\r",
+							"\r",
+							"            pm.test(\"Check in is  validated properly\", function(){\r",
+							"                pm.expect(jsonBody.bookingdates.checkin).to.eql(pm.environment.get(\"checkin_date\"))\r",
+							"            })\r",
+							"\r",
+							"            pm.test(\"Check out is  validated properly\", function(){\r",
+							"                pm.expect(jsonBody.bookingdates.checkout).to.eql(pm.environment.get(\"chekcout_date\"))\r",
+							"            })\r",
+							"            pm.test(\"Additional need is  validated properly\", function(){\r",
+							"                pm.expect(jsonBody.additionalneeds).to.eql(pm.environment.get(\"Additional_Needs\"))\r",
+							"            })\r",
+							"    break\r",
+							"    case 300:\r",
+							"    case 400:\r",
+							"    case 401:\r",
+							"    case 402:\r",
+							"    case 403:\r",
+							"    case 404:\r",
+							"    case 500:\r",
+							"    case 501:\r",
+							"    case 502:\r",
+							"    case 503:\r",
+							"    case 504:\r",
+							"        pm.test(\"Status code is validated\", function(){\r",
+							"            pm.expect(statusCode).to.be.oneOf([100,200,300,404])\r",
+							"        })\r",
+							"    break\r",
+							"}\r",
+							"\r",
+							"\r",
+							"\r",
+							"// console.log(statusCode)\r",
+							"\r",
+							"// jsonBody = JSON.parse(responseBody)\r",
+							"// // \r",
+							"// // console.log(\"outside of the loop:\"+jsonBody)\r",
+							"// switch(404){\r",
+							"//     // case 200:\r",
+							"//     //             pm.test(\"Status code is 200\", function () {\r",
+							"//     //                 pm.response.to.have.status(200)\r",
+							"//     //             });\r",
+							"\r",
+							"//     //             pm.test(\"First Name is correctly match with environment\", function(){\r",
+							"//     //                 pm.expect(jsonBody.firstname).to.eql(pm.environment.get(\"First_Name\"))\r",
+							"//     //             })\r",
+							"\r",
+							"//     //             pm.test(\"Second name is correct\", function(){\r",
+							"//     //                 pm.expect(jsonBody.lastname).to.eql(pm.environment.get(\"Last_Name\"))\r",
+							"//     //             })\r",
+							"\r",
+							"//     //             pm.test(\"total price is correct\", function(){\r",
+							"//     //                 pm.expect(jsonBody.totalprice).to.eql(pm.environment.get(\"Total_Price\"))\r",
+							"//     //             })\r",
+							"\r",
+							"//     //             pm.test(\"Check in is confirmed\", function(){\r",
+							"//     //                 pm.expect(jsonBody.bookingdates.checkin).to.eql(pm.environment.get(\"checkin_date\"))\r",
+							"//     //             })\r",
+							"\r",
+							"//     //             pm.test(\"Check out is confirmed\", function(){\r",
+							"//     //                 pm.expect(jsonBody.bookingdates.checkout).to.eql(pm.environment.get(\"chekcout_date\"))\r",
+							"//     //             })\r",
+							"//     //             pm.test(\"Additional need is confirmed\", function(){\r",
+							"//     //                 pm.expect(jsonBody.additionalneeds).to.eql(pm.environment.get(\"Additional_Needs\"))\r",
+							"//     //             })\r",
+							"//     // break\r",
+							"    \r",
+							"//     case 400:\r",
+							"//     case 404:\r",
+							"//         pm.test(\"Not Found\", function(){\r",
+							"//             pm.expect(404).to.be.oneOf([400,401,402,403,404])\r",
+							"//         })\r",
+							"//     break\r",
+							"\r",
+							"//     case 500:\r",
+							"//     case 501:\r",
+							"//     case 503:\r",
+							"//     case 504:\r",
+							"//         pm.test(\"Not Found\", function(){\r",
+							"//             pm.expect(503).to.have.oneOf([500,501,502,503,504])\r",
+							"//         })\r",
+							"//     break\r",
+							"//     default:\r",
+							"//         console.log(jsonBody)\r",
+							"//     break\r",
+							"\r",
+							"// }"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/{{id}}",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateBookingInformation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var statusCode = pm.response.code;\r",
+							"var jsonBody = JSON.parse(pm.response.text());\r",
+							"\r",
+							"\r",
+							"\r",
+							"switch(statusCode){\r",
+							"    case 200:\r",
+							"            \r",
+							"            pm.test(\"Status code is 200\", function () {\r",
+							"                pm.response.to.have.status(200);\r",
+							"            });\r",
+							"                pm.test(\"First Name is  validated properly.\", function(){\r",
+							"                pm.expect(jsonBody.firstname).to.eql(pm.environment.get(\"First_Name\"))\r",
+							"            })\r",
+							"\r",
+							"            pm.test(\"Second name is  validated properly\", function(){\r",
+							"                pm.expect(jsonBody.lastname).to.eql(pm.environment.get(\"Last_Name\"))\r",
+							"            })\r",
+							"\r",
+							"    break\r",
+							"     case 300:\r",
+							"    case 400:\r",
+							"    case 401:\r",
+							"    case 402:\r",
+							"    case 403:\r",
+							"    case 404:\r",
+							"    case 500:\r",
+							"    case 501:\r",
+							"    case 502:\r",
+							"    case 503:\r",
+							"    case 504:\r",
+							"        pm.test(\"Status code is validated\", function(){\r",
+							"            pm.expect(statusCode).to.be.oneOf([100,200,300,404])\r",
+							"        })\r",
+							"    break\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var firsname = pm.variables.replaceIn('{{$randomFirstName}}');\r",
+							"console.log(\"first name:\"+firsname)\r",
+							"pm.environment.set(\"First_Name\", firsname);\r",
+							"\r",
+							"// set random lastname to envrionment.\r",
+							"\r",
+							"var lastname = pm.variables.replaceIn('{{$randomLastName}}');\r",
+							"console.log(\"Last name: \"+lastname)\r",
+							"pm.environment.set(\"Last_Name\", lastname);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\" : \"{{First_Name}}\",\r\n    \"lastname\" : \"{{Last_Name}}\",\r\n    \"totalprice\" : {{totalPrice}},\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"{{checkin_date}}\",\r\n        \"checkout\" : \"{{chekcout_date}}\"\r\n    },\r\n    \"additionalneeds\" : \"{{Additional_Needs}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/{{id}}",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PartialUpdateBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"jsonBody = JSON.parse(pm.response.text())\r",
+							"    pm.test(\"First_Name is correctly match with environment\", function(){\r",
+							"        pm.expect(jsonBody.firstname).to.eql(pm.environment.get(\"First_Name\"));\r",
+							"    })\r",
+							"\r",
+							"    pm.test(\"Last_Name is correctly match with environment\", function(){\r",
+							"        pm.expect(jsonBody.lastname).to.eql(pm.environment.get(\"Last_Name\"));\r",
+							"    })"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let fName = [\"Sakib\",\"Ibrahim\",\"Pushpa\",\"Donal\",\"champ\"];\r",
+							"let Second_Name = [\"A1\",\"b2\",\"c2\",\"d4\"];\r",
+							"\r",
+							"function random_Func() {\r",
+							"    var First_Name = fName[(Math.floor(Math.random() * fName.length))]\r",
+							"    pm.environment.set(\"First_Name\", First_Name)\r",
+							"    var Last_Name = Second_Name[(Math.floor(Math.random() * Second_Name.length))]\r",
+							"    pm.environment.set(\"Last_Name\", Last_Name)\r",
+							"}\r",
+							"random_Func()"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\" : \"{{First_Name}}\",\r\n    \"lastname\" : \"{{Last_Name}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/{{id}}",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

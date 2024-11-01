@@ -1,0 +1,254 @@
+{
+	"id": "a674d292-5adc-4f2c-ba08-63707558ca8f",
+	"name": "PracticeApi",
+	"timestamp": "2024-11-01T14:34:20.917Z",
+	"collection_id": "29107702-66b0f901-59c1-489f-8255-1c42d573ad7a",
+	"folder_id": "29107702-60e7edd0-7c6a-420f-93ec-520935359e81",
+	"environment_id": "29107702-20e61874-e668-475f-b28e-2f6a28608507",
+	"totalPass": 45,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-11-01T14:34:13.123Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "3a8dad5f-903e-4c90-a78e-4bdfe4f2a142",
+			"name": "Auth - CreateToken",
+			"url": "https://restful-booker.herokuapp.com/auth",
+			"time": 288,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Token is validate properly.": true
+			},
+			"testPassFailCounts": {
+				"Token is validate properly.": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1650,
+				890,
+				759,
+				412,
+				288
+			],
+			"allTests": [
+				{
+					"Token is validate properly.": true
+				},
+				{
+					"Token is validate properly.": true
+				},
+				{
+					"Token is validate properly.": true
+				},
+				{
+					"Token is validate properly.": true
+				},
+				{
+					"Token is validate properly.": true
+				}
+			]
+		},
+		{
+			"id": "df7188d9-41d0-47b2-b660-730a9f2b06ab",
+			"name": "CreateBookingCSV",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 529,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is \"200\"": true,
+				"First Name is validated successfully: JSON = \"TURNY\", iterationData = \"TURNY\"": true,
+				"Last Name is validate successfully: JSON: \"RABBANI\", iterationData = \"RABBANI": true,
+				"Total Price is validate successfully: JSON: \"11112\", iterationData = \"11112": true,
+				"Deposite is validate successfully: JSON: \"false\", iterationData = \"false": true,
+				"Check in is confirmed": true,
+				"Check out is confirmed": true,
+				"Additional needs is validate successfully: JSON: \"JAPANEESE\", iterationData = \"JAPANEESE": true
+			},
+			"testPassFailCounts": {
+				"Status code is \"200\"": {
+					"pass": 5,
+					"fail": 0
+				},
+				"First Name is validated successfully: JSON = \"MD.BK\", iterationData = \"MD.BK\"": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Last Name is validate successfully: JSON: \"Khan\", iterationData = \"Khan": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Total Price is validate successfully: JSON: \"65454\", iterationData = \"65454": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deposite is validate successfully: JSON: \"true\", iterationData = \"true": {
+					"pass": 3,
+					"fail": 0
+				},
+				"Check in is confirmed": {
+					"pass": 5,
+					"fail": 0
+				},
+				"Check out is confirmed": {
+					"pass": 5,
+					"fail": 0
+				},
+				"Additional needs is validate successfully: JSON: \"WIFE\", iterationData = \"WIFE": {
+					"pass": 1,
+					"fail": 0
+				},
+				"First Name is validated successfully: JSON = \"MD. Mahmud\", iterationData = \"MD. Mahmud\"": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Last Name is validate successfully: JSON: \"Ahamed\", iterationData = \"Ahamed": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Total Price is validate successfully: JSON: \"14112\", iterationData = \"14112": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deposite is validate successfully: JSON: \"false\", iterationData = \"false": {
+					"pass": 2,
+					"fail": 0
+				},
+				"Additional needs is validate successfully: JSON: \"KERA\", iterationData = \"KERA": {
+					"pass": 1,
+					"fail": 0
+				},
+				"First Name is validated successfully: JSON = \"Sabbir\", iterationData = \"Sabbir\"": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Last Name is validate successfully: JSON: \"CTO\", iterationData = \"CTO": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Total Price is validate successfully: JSON: \"65455\", iterationData = \"65455": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Additional needs is validate successfully: JSON: \"SADIA\", iterationData = \"SADIA": {
+					"pass": 1,
+					"fail": 0
+				},
+				"First Name is validated successfully: JSON = \"SUMAIYA\", iterationData = \"SUMAIYA\"": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Last Name is validate successfully: JSON: \"RIFAT\", iterationData = \"RIFAT": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Total Price is validate successfully: JSON: \"544554\", iterationData = \"544554": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Additional needs is validate successfully: JSON: \"DOI\", iterationData = \"DOI": {
+					"pass": 1,
+					"fail": 0
+				},
+				"First Name is validated successfully: JSON = \"TURNY\", iterationData = \"TURNY\"": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Last Name is validate successfully: JSON: \"RABBANI\", iterationData = \"RABBANI": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Total Price is validate successfully: JSON: \"11112\", iterationData = \"11112": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Additional needs is validate successfully: JSON: \"JAPANEESE\", iterationData = \"JAPANEESE": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				558,
+				563,
+				874,
+				647,
+				529
+			],
+			"allTests": [
+				{
+					"Status code is \"200\"": true,
+					"First Name is validated successfully: JSON = \"MD.BK\", iterationData = \"MD.BK\"": true,
+					"Last Name is validate successfully: JSON: \"Khan\", iterationData = \"Khan": true,
+					"Total Price is validate successfully: JSON: \"65454\", iterationData = \"65454": true,
+					"Deposite is validate successfully: JSON: \"true\", iterationData = \"true": true,
+					"Check in is confirmed": true,
+					"Check out is confirmed": true,
+					"Additional needs is validate successfully: JSON: \"WIFE\", iterationData = \"WIFE": true
+				},
+				{
+					"Status code is \"200\"": true,
+					"First Name is validated successfully: JSON = \"MD. Mahmud\", iterationData = \"MD. Mahmud\"": true,
+					"Last Name is validate successfully: JSON: \"Ahamed\", iterationData = \"Ahamed": true,
+					"Total Price is validate successfully: JSON: \"14112\", iterationData = \"14112": true,
+					"Deposite is validate successfully: JSON: \"false\", iterationData = \"false": true,
+					"Check in is confirmed": true,
+					"Check out is confirmed": true,
+					"Additional needs is validate successfully: JSON: \"KERA\", iterationData = \"KERA": true
+				},
+				{
+					"Status code is \"200\"": true,
+					"First Name is validated successfully: JSON = \"Sabbir\", iterationData = \"Sabbir\"": true,
+					"Last Name is validate successfully: JSON: \"CTO\", iterationData = \"CTO": true,
+					"Total Price is validate successfully: JSON: \"65455\", iterationData = \"65455": true,
+					"Deposite is validate successfully: JSON: \"true\", iterationData = \"true": true,
+					"Check in is confirmed": true,
+					"Check out is confirmed": true,
+					"Additional needs is validate successfully: JSON: \"SADIA\", iterationData = \"SADIA": true
+				},
+				{
+					"Status code is \"200\"": true,
+					"First Name is validated successfully: JSON = \"SUMAIYA\", iterationData = \"SUMAIYA\"": true,
+					"Last Name is validate successfully: JSON: \"RIFAT\", iterationData = \"RIFAT": true,
+					"Total Price is validate successfully: JSON: \"544554\", iterationData = \"544554": true,
+					"Deposite is validate successfully: JSON: \"true\", iterationData = \"true": true,
+					"Check in is confirmed": true,
+					"Check out is confirmed": true,
+					"Additional needs is validate successfully: JSON: \"DOI\", iterationData = \"DOI": true
+				},
+				{
+					"Status code is \"200\"": true,
+					"First Name is validated successfully: JSON = \"TURNY\", iterationData = \"TURNY\"": true,
+					"Last Name is validate successfully: JSON: \"RABBANI\", iterationData = \"RABBANI": true,
+					"Total Price is validate successfully: JSON: \"11112\", iterationData = \"11112": true,
+					"Deposite is validate successfully: JSON: \"false\", iterationData = \"false": true,
+					"Check in is confirmed": true,
+					"Check out is confirmed": true,
+					"Additional needs is validate successfully: JSON: \"JAPANEESE\", iterationData = \"JAPANEESE": true
+				}
+			]
+		}
+	],
+	"count": 5,
+	"totalTime": 7170,
+	"collection": {
+		"requests": [
+			{
+				"id": "3a8dad5f-903e-4c90-a78e-4bdfe4f2a142",
+				"method": "POST"
+			},
+			{
+				"id": "df7188d9-41d0-47b2-b660-730a9f2b06ab",
+				"method": "POST"
+			}
+		]
+	}
+}
